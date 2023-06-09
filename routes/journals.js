@@ -24,4 +24,18 @@ router.get('/', async (req,res) => {
     }
 })
 
+//Get Blog Post by a specific id
+router.get('/:id', async (req,res) => {
+    try{
+        const journal = await Journal.findByPk(req.params.id)
+        if(!journal){
+            res.status(404).json({message: 'Blog post not found'})
+        } else {
+            res.json(journal)
+        }
+    }catch (error){
+        res.status(500).json({message: "Error retrieving blog post", error })
+    }
+})
+
 module.exports = router;
