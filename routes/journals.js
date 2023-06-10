@@ -7,7 +7,7 @@ const { Journal } = require('../models')
 router.post('/', async (req,res) => {
     const { title, entry } = req.body;
     try{
-        const journal = await Journal.create({ title,entry });
+        const journal = await Journal.create({ title,entry,link,topic });
         res.status(201).json(journal);
     } catch (error) {
         res.status(500).json({ message: "Error creating blog post", error});
