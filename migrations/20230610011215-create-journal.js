@@ -15,6 +15,12 @@ module.exports = {
       entry: {
         type: Sequelize.TEXT
       },
+      link: {
+        type: Sequelize.STRING
+      },
+      topic: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

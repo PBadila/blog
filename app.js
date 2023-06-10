@@ -13,6 +13,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const journalsRouter = require('./routes/journals');
+const commentsRouter = require('./routes/comments');
 
 var app = express();
 app.use(cors());
@@ -36,5 +37,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/journals', journalsRouter)
+app.use('/comments', commentsRouter)
 
 module.exports = app;
