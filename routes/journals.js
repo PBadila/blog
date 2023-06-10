@@ -5,7 +5,7 @@ const { Journal } = require('../models')
 
 //Create a new Blog Post
 router.post('/', async (req,res) => {
-    const { title, entry } = req.body;
+    const { title, entry, link, topic } = req.body;
     try{
         const journal = await Journal.create({ title,entry,link,topic });
         res.status(201).json(journal);
