@@ -5,7 +5,7 @@ const { authenticate } = require("../middlewares/auth")
 const { Journal } = require('../models')
 
 //Create a new Blog Post
-router.post('/', authenticate, async (req,res) => {
+router.post('/',  async (req,res) => {
     const { title, entry, link, topic } = req.body;
     try{
         const journal = await Journal.create({ title,entry,link,topic });
@@ -40,7 +40,7 @@ router.get('/:id', async (req,res) => {
 })
 
 //Update a Blog Post by id
-router.put('/:id', authenticate, async (req,res)=> {
+router.put('/:id', async (req,res)=> {
     const { title, entry, link, topic } = req.body
     try{
         //newPost is an empty object created to hold the properties to be updated
