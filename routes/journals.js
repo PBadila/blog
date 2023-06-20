@@ -39,7 +39,7 @@ router.get('/:id', async (req,res) => {
     }
 })
 
-//Update a Blog Post by id
+//Update (replace) a Blog Post by id
 router.put('/:id', async (req,res)=> {
     const { title, entry, link, topic } = req.body
     try{
@@ -69,6 +69,32 @@ router.put('/:id', async (req,res)=> {
             res.status(404).json({message: 'Post not found'})
         }
         } catch (error) {
+            res.status(500).json({message: "Error updating post", error})
+        }
+    
+})
+
+
+//Update (add to) a Blog Post by id
+router.patch('/:id', async (req,res)=> {
+    const { entry, link, date } = req.body
+    try{
+        //find blog post by id. If it doesn't exist, return error message
+        const existPost = await Journal.findByPk(req.params.id)
+        if(!existPost){
+            return res.status(404).json({message: "Post not found"})
+        } 
+        //updating properties of existing post 
+        existPost.title = existPost.title + ' - Updated'
+        if(entry !== undefined){
+            existPost.entry = existPost.entry + '\nUpdate:\n' +`(${date}) `+ entry
+        }
+        if(link !== undefined){
+            existPost.link = existPost.link + ', ' + link
+        }
+        await existPost.save()
+        res.json(existPost)
+    } catch (error) {
             res.status(500).json({message: "Error updating post", error})
         }
     
