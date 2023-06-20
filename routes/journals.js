@@ -92,13 +92,13 @@ router.patch('/:id', async (req,res)=> {
                 existPost.entry = existPost.entry + '\n\nUpdate:\n' +`(${date}) `+ entry
             }
         }
-        if(link !== undefined){
+        if(link !== undefined && link !== ''){
             existPost.link = existPost.link + ', ' + link
         }
         await existPost.save()
         res.json(existPost)
     } catch (error) {
-            res.status(500).json({message: "Error updating post", error})
+            res.status(500).json({message: "Error updating this post", error})
         }
     
 })
