@@ -88,10 +88,11 @@ router.patch('/:id', async (req,res)=> {
         const alreadyUpdated = existPost.title.split(' -')
         if(!alreadyUpdated){
             existPost.title = existPost.title + ' - Updated'
+        }
             if(entry !== undefined){
                 existPost.entry = existPost.entry + '\n\nUpdate:\n' +`(${date}) `+ entry
             }
-        }
+        
         if(link !== undefined && link !== ''){
             existPost.link = existPost.link + ', ' + link
         }
