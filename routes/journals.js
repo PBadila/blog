@@ -85,9 +85,12 @@ router.patch('/:id', async (req,res)=> {
             return res.status(404).json({message: "Post not found"})
         } 
         //updating properties of existing post 
-        existPost.title = existPost.title + ' - Updated'
-        if(entry !== undefined){
-            existPost.entry = existPost.entry + '\nUpdate:\n' +`(${date}) `+ entry
+        const alreadyUpdated = existPost.title.split(' -')
+        if(!alreadyUpdated){
+            existPost.title = existPost.title + ' - Updated'
+            if(entry !== undefined){
+                existPost.entry = existPost.entry + '\n\nUpdate:\n' +`(${date}) `+ entry
+            }
         }
         if(link !== undefined){
             existPost.link = existPost.link + ', ' + link
