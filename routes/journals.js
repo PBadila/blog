@@ -90,7 +90,7 @@ router.patch('/:id', async (req,res)=> {
             existPost.title = existPost.title + ' - Updated'
         }
             if(entry !== undefined){
-                existPost.entry = existPost.entry + '\n\nUpdate:\n' +`(${date}) `+ entry
+                existPost.entry = existPost.entry + '\n\nUpdate' +`(${date}) : \n`+ entry
             }
         
         if(link !== undefined && link !== ''){
